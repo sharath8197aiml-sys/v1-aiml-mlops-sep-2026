@@ -1,0 +1,4 @@
+{
+  "model_type": "logreg",
+  "C": 0.1
+}

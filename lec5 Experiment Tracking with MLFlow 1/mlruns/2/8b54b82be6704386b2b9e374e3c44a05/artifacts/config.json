@@ -1,0 +1,6 @@
+{
+  "model_type": "hist_gb",
+  "learning_rate": 0.1,
+  "max_leaf_nodes": 127,
+  "max_iter": 300
+}
