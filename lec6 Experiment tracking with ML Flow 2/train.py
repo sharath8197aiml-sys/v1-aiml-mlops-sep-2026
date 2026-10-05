@@ -103,9 +103,11 @@ def main():
         "min_child_weight": args.min_child_weight,
     }
     if args.config:  # e.g. the best_config.json a tuning run logged: typed values, one source of truth
-        config.update(mlflow.artifacts.load_dict(args.config))
-
+        config.update(mlflow.artifacts.load_dict(args.config)) # imports values with its data type instead of string
+    
+    # In real world you read it from amazon s3
     bookings = pd.read_csv(DATA)
+    
     # float64, not int64: the logged signature then says `double`, so a missing value
     # reaches the imputer instead of being rejected by schema enforcement
     X = bookings[FEATURES].astype({c: "float64" for c in NUMERIC})
