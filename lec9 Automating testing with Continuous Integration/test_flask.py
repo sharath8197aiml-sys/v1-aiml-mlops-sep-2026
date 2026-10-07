@@ -30,3 +30,40 @@ def test_my_first_flask_function(client):
 
 	assert response.data == b'No!!! It is Monday!'
 	assert response.status_code == 200
+
+def test_main_predict_function(client):
+
+	payload1 = { "Gender": "Male", "Married": "Unmarried", "Credit_History": "Cleared Debts", "ApplicantIncome": 50000, "LoanAmount": 500000000 }
+
+	response = client.post('/predict', json=payload1) #.post is used to simulate a POST request to the specified endpoint with a JSON payload
+
+	assert response.status_code == 200
+	#assert response.get_json() == {"loan_approval_status": "Loan Approved"} or response.get_json() == {"loan_approval_status": "Loan Rejected"}, "Unexpected response"
+
+	assert response.get_json() == {"loan_approval_status": "Loan Rejected"}, "Unexpected response"
+
+	payload2 = { "Gender": "Male", "Married": "Unmarried", "Credit_History": "Cleared Debts", "ApplicantIncome": 50000, "LoanAmount": 5 }
+
+	response = client.post('/predict', json=payload2) #.post is used to simulate a POST request to the specified endpoint with a JSON payload
+
+	assert response.status_code == 200
+	assert response.get_json() == {"loan_approval_status": "Loan Approved"}, "Unexpected response"
+
+
+
+def test_predict_function_with_varied_inputs(client):
+
+    for i in range(100):
+        if i % 10 == 0:
+            print(f"Running iteration {i}/100")
+        
+        rng_payload = { "Gender":  np.random.choice(["Male", "Female"]),
+                            "Married": np.random.choice(["Married", "Unmarried"]),
+                            "Credit_History": np.random.choice(["Cleared Debts", "Uncleared Debts"]),
+                            "ApplicantIncome": np.random.randint(1000, 100000),
+                            "LoanAmount": np.random.randint(1000, 1000000) }
+            
+        response = client.post('/predict', json=rng_payload)
+        assert response.status_code == 200, f"Expected status code 200, got {response.status_code} for payload: {rng_payload}"
+        assert response.json in [{"loan_approval_status": "Loan Approved"}, {"loan_approval_status": "Loan Rejected"}], \
+            f"Unexpected response for payload: {rng_payload}. Response: {response.json}"
