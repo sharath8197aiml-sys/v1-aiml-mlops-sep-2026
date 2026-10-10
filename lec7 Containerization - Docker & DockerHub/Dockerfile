@@ -1,6 +1,7 @@
 #python:3.10-slim debian variant of linux
 
-# Using slim version to keep the image size small. python:3.10-slim includes OS libraries and dependencies required to run Python applications, but it does not include unnecessary packages that are not needed for most applications. This helps to reduce the attack surface and improve security.
+# Using slim version to keep the image size small. python:3.10-slim includes OS libraries and dependencies required to run Python applications, 
+# but it does not include unnecessary packages that are not needed for most applications. This helps to reduce the attack surface and improve security.
 FROM python:3.10-slim 
 
 
