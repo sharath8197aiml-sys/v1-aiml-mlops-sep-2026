@@ -1,5 +1,5 @@
-from lec9_CI.base_file import add, subtract, multiply, divide
-
+# from base_file import add, subtract, multiply, divide
+from lec9_CI.basic_pytest_demo.base_file import add, subtract, multiply, divide
 
 
 def test_add():
@@ -23,3 +23,7 @@ def test_divide():
 	assert divide(-6, 2) == -3, "Expected divide(-6, 2) to be -3"
 	assert divide(0, 1) == 0, "Expected divide(0, 1) to be 0"
 	assert divide(5, 0) == "Cannot divide by zero", "Expected divide(5, 0) to be 'Cannot divide by zero'"
+ 
+ 
+# execute this below coommand  when you are in current directory
+#  python -m pytest test_base_file.py -v

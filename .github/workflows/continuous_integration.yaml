@@ -1,4 +1,4 @@
-#yet another markup languag
+#yet another markup language
 
 name: CI
 
@@ -48,5 +48,5 @@ jobs:
               uses: docker/build-push-action@v7 #https://github.com/docker/build-push-action
               with:
                 push: true
-                tags: shivam13juna/oct7_2026_live_ci:latest  # Replace with your Docker Hub username and image name
+                tags: sharath8197aiml/oct7_2026_live_ci:latest  # Replace with your Docker Hub username and image name
       
