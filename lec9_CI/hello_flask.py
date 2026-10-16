@@ -1,4 +1,5 @@
 import joblib
+from pathlib import Path
 from flask import Flask, request
 
 # pip install Flask
@@ -61,8 +62,8 @@ def index():
 </head>
 <body>
   <div class="content">
-	<div class="title">Welcome to CI Session!!</div>
-	<div class="subtitle">Let's learn what is continuous integration!! :)</div>
+	<div class="title">Welcome to Continuous Deployment Session! v2</div>
+	<div class="subtitle">Let's learn how to use Automatic Load Balancer 💃🏻 :)</div>
   </div>
 </body>
 </html>
@@ -77,7 +78,8 @@ def monday_endpoint():
 #curl --location 'http://127.0.0.1:5000/monday'
 
 
-clf = joblib.load('classifier.pkl')
+# load the model from this file's folder, so it works whichever folder the app is started from
+clf = joblib.load(Path(__file__).parent / 'classifier.pkl')
 
 #
 @pancakes.route('/predict', methods=['POST'])
